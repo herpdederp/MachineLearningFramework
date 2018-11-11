@@ -2,30 +2,56 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AgentController : MonoBehaviour
+public class AgentController : MonoBehaviour, IUnit
 {
+    uint health = 10;
+
+    uint framesUntilSwapDirection;
 
     bool right;
+
+
+    void ApplyDamage(uint damageAmount)
+    {
+        health -= damageAmount;
+
+        if (health <= 0)
+        {
+            GlobalControl.units.Remove(this);
+            GlobalControl.enemiesKilled++;
+            Destroy(gameObject);
+
+        }
+    }
 
     // Use this for initialization
     void Start()
     {
-        Invoke("SwapDirection", 3.0f);
+        GlobalControl.units.Add(this);
+        framesUntilSwapDirection = 90;
     }
 
     void SwapDirection()
     {
         right = !right;
 
-        Invoke("SwapDirection", 3.0f);
+        framesUntilSwapDirection = 90;
     }
 
-    // Update is called once per frame
-    void Update()
+
+    public void StepSimulation()
     {
 
+        if (framesUntilSwapDirection <= 0)
+        {
+            SwapDirection();
+        }
+        else framesUntilSwapDirection--;
+
         if (right)
-            transform.Translate(Vector3.left * Time.deltaTime * 5f);
-        else transform.Translate(Vector3.right * Time.deltaTime * 5f);
+            transform.Translate(Vector3.left * 0.1f);
+        else transform.Translate(Vector3.right * 0.1f);
     }
+
+
 }

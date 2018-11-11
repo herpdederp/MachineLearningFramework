@@ -2,21 +2,40 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IUnit
 {
     int numberOfHits;
 
 
     public Transform target;
 
-    // Use this for initialization
-    void Start()
+    private void Start()
+    {
+        GlobalControl.units.Add(this);
+    }
+
+
+    void TurnLeft()
     {
 
     }
 
-    // Update is called once per frame
-    void Update()
+    void TurnRight()
+    {
+
+    }
+
+    void MoveForward()
+    {
+
+    }
+
+    void MoveRight()
+    {
+
+    }
+
+    void MoveLeft()
     {
 
     }
@@ -32,6 +51,11 @@ public class PlayerController : MonoBehaviour
     }
 
     void ShootInDirection(Vector3 direction)
+    {
+
+    }
+
+    public void StepSimulation()
     {
 
     }
