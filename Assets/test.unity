@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -339,9 +339,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1193728457}
   - component: {fileID: 1193728456}
-  - component: {fileID: 1193728455}
   - component: {fileID: 1193728454}
   - component: {fileID: 1193728458}
+  - component: {fileID: 1193728455}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -383,8 +383,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &1193728455
-BoxCollider:
+--- !u!143 &1193728455
+CharacterController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -393,7 +393,12 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Height: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1193728456
 MeshFilter:
@@ -426,6 +431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 607cfa638cd991b4e994336ff92f4434, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shot: {fileID: 1164104490378902, guid: bf20ee666d07c7e41a11264b4974afd7, type: 2}
   target: {fileID: 1640557960}
 --- !u!1 &1535580077
 GameObject:
@@ -476,9 +482,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1640557960}
   - component: {fileID: 1640557959}
-  - component: {fileID: 1640557958}
   - component: {fileID: 1640557957}
   - component: {fileID: 1640557961}
+  - component: {fileID: 1640557958}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -520,8 +526,8 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!136 &1640557958
-CapsuleCollider:
+--- !u!143 &1640557958
+CharacterController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
@@ -529,9 +535,13 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.5
+  serializedVersion: 2
   m_Height: 2
-  m_Direction: 1
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1640557959
 MeshFilter:

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class AgentController : MonoBehaviour, IUnit
 {
+    CharacterController characterController;
+
     uint health = 10;
 
     uint framesUntilSwapDirection;
@@ -11,13 +13,13 @@ public class AgentController : MonoBehaviour, IUnit
     bool right;
 
 
-    void ApplyDamage(uint damageAmount)
+    public void ApplyDamage(uint damageAmount)
     {
         health -= damageAmount;
 
         if (health <= 0)
         {
-            GlobalControl.units.Remove(this);
+            GlobalControl.unitsToRemove.Add(this);
             GlobalControl.enemiesKilled++;
             Destroy(gameObject);
 
@@ -27,6 +29,7 @@ public class AgentController : MonoBehaviour, IUnit
     // Use this for initialization
     void Start()
     {
+        characterController = GetComponent<CharacterController>();
         GlobalControl.units.Add(this);
         framesUntilSwapDirection = 90;
     }
@@ -49,9 +52,13 @@ public class AgentController : MonoBehaviour, IUnit
         else framesUntilSwapDirection--;
 
         if (right)
-            transform.Translate(Vector3.left * 0.1f);
-        else transform.Translate(Vector3.right * 0.1f);
+            characterController.Move(Vector3.left * 0.1f);
+        else characterController.Move(Vector3.right * 0.1f);
     }
 
+    public GameObject GetGameObject()
+    {
+        return gameObject;
+    }
 
 }

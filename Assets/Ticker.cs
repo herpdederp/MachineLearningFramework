@@ -5,8 +5,15 @@ using UnityEngine;
 public class Ticker : MonoBehaviour
 {
 
+    private void Start()
+    {
+        GlobalControl.allowManualInput = true;
+        GlobalControl.automaticTick = true;
+    }
+
     private void FixedUpdate()
     {
-        GlobalControl.StepAll();
+        if (GlobalControl.automaticTick == true)
+            GlobalControl.StepAll();
     }
 }

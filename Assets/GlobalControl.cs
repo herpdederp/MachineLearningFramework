@@ -5,12 +5,18 @@ using UnityEngine;
 public interface IUnit
 {
     void StepSimulation();
+    GameObject GetGameObject();
 }
 
 public static class GlobalControl
 {
+    public static bool allowManualInput;
+    public static bool automaticTick;
+
     public static uint enemiesKilled;
     public static List<IUnit> units = new List<IUnit>();
+
+    public static List<IUnit> unitsToRemove = new List<IUnit>();
 
     public static void StepAll()
     {
@@ -18,6 +24,14 @@ public static class GlobalControl
         {
             Unit.StepSimulation();
         }
+
+        foreach (IUnit Unit in unitsToRemove)
+        {
+            units.Remove(Unit);
+        }
+
+        unitsToRemove.Clear();
+
     }
 
 }
